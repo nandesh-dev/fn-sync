@@ -1,0 +1,35 @@
+{
+  "name": "fn-sync",
+  "version": "1.0.1",
+  "description": "Run server functions from client without worrying about apis.",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "npx tsc",
+    "dev": "npx nodemon --ignore 'dist/**' --exec npm run test --ext ts",
+    "test": "npx ts-node test/index.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nandesh-dev/FnSync.git"
+  },
+  "keywords": [
+    "RPC",
+    "api",
+    "server",
+    "client"
+  ],
+  "author": "nandesh",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/nandesh-dev/FnSync/issues"
+  },
+  "homepage": "https://github.com/nandesh-dev/FnSync#readme",
+  "devDependencies": {
+    "@types/express": "^4.17.21",
+    "typescript": "^5.4.5"
+  },
+  "dependencies": {
+    "axios": "^1.7.2",
+    "express": "^4.19.2"
+  }
+}
