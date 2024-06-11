@@ -1,7 +1,9 @@
 import express, { Request, Response } from "express";
 
 interface functions {
-  [key: string]: Function;
+  [key: string]: {
+    [key: string]: Function;
+  };
 }
 
 export class Server {
@@ -16,16 +18,19 @@ export class Server {
 
     router.use(express.json());
     router.post("/", async (req: Request, res: Response) => {
-      const { name, args } = req.body;
+      const { name, args, version } = req.body;
 
-      let response = await this.runFunction(name, args);
+      let response = await this.runFunction(name, version || 1, args);
       res.send(response);
     });
 
     return router;
   }
 
-  registerFunction(func: Function, name?: string) {
+  registerFunction(
+    func: Function,
+    { version = 1, name }: { version?: number; name?: string } = {},
+  ) {
     let functionName = name || func.name;
 
     if (!functionName || !functionName.trim()) {
@@ -34,7 +39,9 @@ export class Server {
       );
     }
 
-    if (typeof this.functions[functionName] === "function") {
+    if (!this.functions[version]) this.functions[version] = {};
+
+    if (typeof this.functions[version][functionName] === "function") {
       throw new Error("Function already exist.");
     }
 
@@ -42,17 +49,23 @@ export class Server {
       throw new Error("Expected function as parameter.");
     }
 
-    this.functions[functionName] = func;
+    this.functions[version][functionName] = func;
   }
 
-  private async runFunction(name: string, args: Array<any>) {
+  private async runFunction(name: string, version: number, args: Array<any>) {
     try {
-      let func = this.functions[name];
+      if (!this.functions[version])
+        return {
+          status: "invalid",
+          error: "Version not found.",
+        };
+
+      let func = this.functions[version][name];
 
       if (typeof func !== "function") {
         return {
           status: "invalid",
-          error: "Function not found.",
+          error: "Function / version not found.",
         };
       }
 

@@ -62,10 +62,30 @@ func(messages).then((message) => {
 });
 ```
 
+# Function Versions
+
+You can have multiple versions of the function with the same name. The default version is 1.
+
+## Server Side
+
+On the server side, pass in the version ( a number ) while registering the function.
+
+```javascript
+server.registerFunction(demoFunction, { version: 2 });
+```
+
+## Client Side
+
+On the client side, get the function with the desired version.
+
+```javascript
+let func = client.getFunction("demoFunction", { version: 2 });
+```
+
 # Support and Issues
 
 For any support or to report issues, please visit the [GitHub repository](https://github.com/nandesh-dev/FnSync) of this library.
 
 # License
 
-This package is licensed under the MIT License.
+This package is licensed under the [MIT](https://github.com/nandesh-dev/FnSync/blob/function-version/LICENSE.md) License.

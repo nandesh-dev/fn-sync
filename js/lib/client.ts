@@ -7,10 +7,11 @@ export class Client {
     this.url = url;
   }
 
-  getFunction(name: string) {
+  getFunction(name: string, { version = 1 }: { version?: number } = {}) {
     return async (...args: Array<any>) => {
       let res = await axios.post(this.url, {
         name,
+        version,
         args: args || [],
       });
 

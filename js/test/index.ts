@@ -15,6 +15,12 @@ async function demoFunction(messages: Array<string>) {
   return "Server is alive!";
 }
 server.registerFunction(demoFunction);
+server.registerFunction(
+  () => {
+    console.log("[Client Log] version 2???");
+  },
+  { name: "demoFunction", version: 2 },
+);
 
 const client = new Client("http://localhost:" + PORT);
 
@@ -24,6 +30,10 @@ let messages = ["Hey!", "Hi..."];
 func(messages).then((message) => {
   console.log(`[Client Log] Got this response from the server: ${message}`);
 });
+
+func = client.getFunction("demoFunction", { version: 2 });
+
+func(messages);
 
 let app = express();
 app.use("/", server.useExpressRouter());
