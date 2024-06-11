@@ -1,6 +1,6 @@
 {
   "name": "fn-sync",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Run server functions from client without worrying about apis.",
   "main": "dist/index.js",
   "scripts": {
