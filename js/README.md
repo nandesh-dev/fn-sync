@@ -88,8 +88,4 @@ For any support or to report issues, please visit the [GitHub repository](https:
 
 # License
 
-This package is licensed under the MIT License.
-
-```
-
-```
+This package is licensed under the [MIT](https://github.com/nandesh-dev/FnSync/blob/function-version/LICENSE.md) License.
