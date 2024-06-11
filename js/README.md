@@ -15,7 +15,7 @@ npm i fn-sync
 On the server side, you can register functions that you want to expose to clients. Here's how you can do it:
 
 ```javascript
-import { Server } from "rpc-library";
+import { Server } from "fn-sync";
 import express from "express";
 
 const PORT = 3000;
@@ -49,7 +49,7 @@ app.listen(PORT, () => {
 On the client side, you can invoke the registered functions on the server. Here's how you can do it:
 
 ```javascript
-import { Client } from "rpc-library";
+import { Client } from "fn-sync";
 
 const PORT = 3000;
 const client = new Client(`http://localhost:${PORT}`);
