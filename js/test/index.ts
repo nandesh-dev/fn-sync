@@ -22,9 +22,9 @@ server.registerFunction(
   { name: "demoFunction", version: 2 },
 );
 
-const client = new Client("http://localhost:" + PORT);
+const client = new Client("http://localhost:" + PORT, { version: 2 });
 
-let func = client.getFunction("demoFunction");
+let func = client.getFunction("demoFunction", { version: 1 });
 
 let messages = ["Hey!", "Hi..."];
 func(messages).then((message) => {

@@ -1,8 +1,12 @@
 {
   "name": "fn-sync",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Run server functions from client without worrying about apis.",
   "main": "dist/index.js",
+  "exports": {
+    "./server": "./dist/server.js",
+    "./client": "./dist/client.js"
+  },
   "scripts": {
     "build": "npx tsc",
     "dev": "npx nodemon --ignore 'dist/**' --exec npm run test --ext ts",
