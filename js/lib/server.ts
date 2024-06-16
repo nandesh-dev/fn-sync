@@ -18,9 +18,9 @@ export class Server {
 
     router.use(express.json());
     router.post("/", async (req: Request, res: Response) => {
-      const { name, args, version } = req.body;
+      const { name, args, version, context } = req.body;
 
-      let response = await this.runFunction(name, version || 1, args);
+      let response = await this.runFunction(name, version || 1, args, context);
       res.send(response);
     });
 
@@ -52,7 +52,12 @@ export class Server {
     this.functions[version][functionName] = func;
   }
 
-  private async runFunction(name: string, version: number, args: Array<any>) {
+  private async runFunction(
+    name: string,
+    version: number,
+    args: Array<any>,
+    context: any,
+  ) {
     try {
       if (!this.functions[version])
         return {
@@ -69,7 +74,7 @@ export class Server {
         };
       }
 
-      let output = await func(...args);
+      let output = await func.call({ context }, ...args);
 
       return {
         status: "success",
