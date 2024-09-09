@@ -1,6 +1,6 @@
 {
   "name": "fn-sync",
-  "version": "1.0.2",
+  "version": "1.0.5",
   "description": "Run server functions from client without worrying about apis.",
   "main": "dist/index.js",
   "scripts": {
@@ -29,7 +29,7 @@
     "typescript": "^5.4.5"
   },
   "dependencies": {
-    "axios": "^1.7.2",
+    "axios": "^1.7.7",
     "express": "^4.19.2"
   }
 }
